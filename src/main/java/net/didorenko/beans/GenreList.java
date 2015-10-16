@@ -36,7 +36,8 @@ public class GenreList {
                 genres.add(genre);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(GenreList.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(GenreList.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         finally {
                 try {
@@ -44,7 +45,8 @@ public class GenreList {
                     if (rs!=null) rs.close();
                     if (conn!=null) conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(GenreList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(GenreList.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
         }
         return  genres;

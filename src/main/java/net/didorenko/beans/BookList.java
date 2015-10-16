@@ -44,7 +44,8 @@ public class BookList {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } finally {
             try {
                 if (stmt != null) {
@@ -57,7 +58,8 @@ public class BookList {
                     conn.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
 

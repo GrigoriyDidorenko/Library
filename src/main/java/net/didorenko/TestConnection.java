@@ -13,10 +13,9 @@ import java.util.logging.Logger;
 public class TestConnection {
 
     public void check() {
-
         try {
             InitialContext ic = new InitialContext();
-            DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/Library");
+            DataSource ds = (DataSource) ic.lookup("jdbc/Library");
             Connection conn = ds.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from book");
