@@ -5,11 +5,14 @@
   Time: 18:21
   To change this template use File | Settings | File Templates.
 --%>
+<%--
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="net.didorenko.beans.Author"%>
 <%@page import="net.didorenko.beans.AuthorList"%>
+--%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="../WEB-INF/jspf/left_menu.jsp"%>
+<%--
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,3 +73,4 @@
 
 </body>
 </html>
+--%>

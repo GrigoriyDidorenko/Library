@@ -22,7 +22,7 @@ public class BookList {
 
     ArrayList<Book> books = new ArrayList<>();
 
-    private ArrayList<Book> getBooks(){
+    private ArrayList<Book> getBooks(String query){
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -31,7 +31,7 @@ public class BookList {
             conn = Database.getConnection();
 
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select * from book order by name");
+            rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Book book = new Book();
                 book.setName(rs.getString("name"));
@@ -44,21 +44,15 @@ public class BookList {
             }
 
         } catch (SQLException ex) {
-//            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
+                if (stmt != null) stmt.close();
+                if (rs != null) rs.close();
+                if (conn != null) conn.close();
             } catch (SQLException ex) {
-//                Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
             }
         }
@@ -67,6 +61,12 @@ public class BookList {
     }
 
     public ArrayList<Book> getBookList(){
-        return (books.isEmpty()) ? getBooks() : books;
+        return (books.isEmpty()) ? getBooks("Select * from book order by name") : books;
+    }
+
+    public ArrayList<Book> getBooksById(long id){
+        return getBooks("SELECT * FROM book\n" +
+                "INNER JOIN genre on genre_id = genre.id\n" +
+                "WHERE genre.id ="+id+"order by 'name'");
     }
 }

@@ -11,12 +11,22 @@ package net.didorenko.beans;
 public class Genre {
 
     private String name;
+    private long id;
 
     public Genre() {
     }
 
-    public Genre(String name){
+    public Genre(long id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

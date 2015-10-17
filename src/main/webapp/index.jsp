@@ -43,12 +43,6 @@
   </div>
 </div>
 
-<%
-  TestConnection testConnection = new TestConnection();
-  testConnection.check();
-  System.out.println("hi");
-%>
-
 </body>
 </html>
 

@@ -11,11 +11,22 @@ package net.didorenko.beans;
 public class Author {
 
     private String name;
+    private long id;
 
-    public Author(){}
+    public Author() {
+    }
 
-    public Author(String name){
+    public Author(long id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
