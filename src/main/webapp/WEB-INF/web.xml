@@ -4,6 +4,16 @@
 
   <display-name>Web Application</display-name>
 
+  <servlet>
+    <servlet-name>ShowImage</servlet-name>
+    <servlet-class>net.didorenko.servlets.ShowImage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ShowImage</servlet-name>
+    <url-pattern>/ShowImage</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>
       30

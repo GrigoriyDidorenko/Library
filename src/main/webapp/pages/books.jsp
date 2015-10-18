@@ -46,7 +46,7 @@
         <p style="margin:10px;"> <a href="#">Читать</a></p>
       </td>
       <td style="width:150px;height: 100px;">
-        <%=book.getImage()%>
+        <img src="<%=request.getContextPath()%>/ShowImage?index=<%=bookArrayList.indexOf(book)%>" height="250" width="190" alt="Обложка">
       </td>
     </tr>
       <%}%>
