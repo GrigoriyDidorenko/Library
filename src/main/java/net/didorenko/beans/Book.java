@@ -21,14 +21,14 @@ public class Book implements Serializable {
     private String isbn;
     private String genre;
     private String author;
-    private Date publishDate;
+    private int publishDate;
     private String publisher;
-    private Image image;
+    private byte[] image;
 
     public Book() {
     }
 
-    public Book(long id, String name, byte[] content, int pageCount, String isbn, String genre, String author, Date publishDate, String publisher, Image image) {
+    public Book(long id, String name, byte[] content, int pageCount, String isbn, String genre, String author, int publishDate, String publisher, byte[] image) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -97,11 +97,11 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public Date getPublishDate() {
+    public int getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
+    public void setPublishDate(int publishDate) {
         this.publishDate = publishDate;
     }
 
@@ -113,11 +113,13 @@ public class Book implements Serializable {
         this.publisher = publisher;
     }
 
-    public Image getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }
+
+

@@ -6,8 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page import="net.didorenko.beans.Book" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.util.ArrayList" %>
 
 <%@include file="../WEB-INF/jspf/left_menu.jsp"%>
 
@@ -27,13 +26,14 @@
 
 <div class="book_List">
   <h3>${param.name}</h3>
+
+  <%
+    ArrayList<Book> bookArrayList = bookList.getBooksById(genreId);
+    session.setAttribute("currentBookList", bookArrayList);
+    for(Book book : bookArrayList){
+  %>
+
   <table cellpadding="30" style="font-size: 12px;">
-
-      <%
-
-            for (Book book : bookList.getBooksById(genreId)) {
-
-        %>
     <tr>
       <td style="width:400px;height: 100px;">
         <p style="color:#378de5 ;font-weight: bold; font-size: 15px;"> <%=book.getName()%></p>
@@ -46,7 +46,7 @@
         <p style="margin:10px;"> <a href="#">Читать</a></p>
       </td>
       <td style="width:150px;height: 100px;">
-        image
+        <%=book.getImage()%>
       </td>
     </tr>
       <%}%>

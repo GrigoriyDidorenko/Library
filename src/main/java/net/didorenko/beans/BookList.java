@@ -2,6 +2,7 @@ package net.didorenko.beans;
 
 import net.didorenko.db.Database;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,8 @@ public class BookList {
 
     ArrayList<Book> books = new ArrayList<>();
 
-    private ArrayList<Book> getBooks(String query){
+    private ArrayList<Book> getBooks(String str) {
+
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -31,32 +33,37 @@ public class BookList {
             conn = Database.getConnection();
 
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
+            System.out.println(str);
+            rs = stmt.executeQuery(str);
             while (rs.next()) {
                 Book book = new Book();
+                book.setId(rs.getLong("id"));
                 book.setName(rs.getString("name"));
-                book.setGenre(rs.getString("genre"));
+                book.setGenre(rs.getString("genre_id"));
                 book.setIsbn(rs.getString("isbn"));
+                book.setAuthor(rs.getString("author_id"));
                 book.setPageCount(rs.getInt("page_count"));
-                book.setPublishDate(rs.getDate("publish_date"));
-                book.setPublisher(rs.getString("publisher"));
+                book.setPublishDate(rs.getInt("publish_year"));
+                book.setPublisher(rs.getString("publisher_id"));
+                book.setImage(rs.getBytes("image"));
                 books.add(book);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
         } finally {
             try {
-                if (stmt != null) stmt.close();
-                if (rs != null) rs.close();
-                if (conn != null) conn.close();
+                if (stmt != null)
+                    stmt.close();
+                if (rs != null)
+                    rs.close();
+                if (conn != null)
+                    conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
-                ex.printStackTrace();
             }
         }
-
+        System.out.println(books);
         return books;
     }
 
@@ -65,8 +72,10 @@ public class BookList {
     }
 
     public ArrayList<Book> getBooksById(long id){
-        return getBooks("SELECT * FROM book\n" +
-                "INNER JOIN genre on genre_id = genre.id\n" +
-                "WHERE genre.id ="+id+"order by 'name'");
+        return getBooks("SELECT * FROM book" +
+                " INNER JOIN `genre` on book.genre_id = `genre`.`id`" +
+                " WHERE genre_id=" +id+
+                " ORDER BY book.`name`" +
+                " limit 5");
     }
 }

@@ -32,6 +32,7 @@ public class GenreList {
             rs = stmt.executeQuery("SELECT * FROM genre ORDER  BY name");
             while (rs.next()){
                 Genre genre = new Genre();
+                genre.setId(rs.getLong("id"));
                 genre.setName(rs.getString("name"));
                 genres.add(genre);
             }

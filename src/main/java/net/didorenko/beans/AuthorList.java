@@ -32,6 +32,7 @@ public class AuthorList {
             while (rs.next()) {
                 System.out.println(rs);
                 Author author = new Author();
+                author.setId(rs.getLong("id"));
                 author.setName(rs.getString("fio"));
                 authors.add(author);
             }
