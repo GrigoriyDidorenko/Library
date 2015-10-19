@@ -71,11 +71,22 @@ public class BookList {
         return (books.isEmpty()) ? getBooks("Select * from book order by name") : books;
     }
 
-    public ArrayList<Book> getBooksById(long id){
+    public ArrayList<Book> getBooksByGenre(long id){
         return getBooks("SELECT * FROM book" +
                 " INNER JOIN `genre` on book.genre_id = `genre`.`id`" +
                 " WHERE genre_id=" +id+
                 " ORDER BY book.`name`" +
                 " limit 5");
+    }
+
+    public ArrayList<Book> getBooksByLetter(String c){
+        return getBooks("SELECT * FROM book" +
+                " WHERE book.`name` LIKE \""+c+"%\"");
+    }
+
+    public ArrayList<Book> getBooksByAuthor(String author){
+        return getBooks("SELECT * FROM book" +
+                " INNER JOIN author ON book.author_id = author.id" +
+                " WHERE `author`.`fio` = \""+author+"\"");
     }
 }
