@@ -63,7 +63,6 @@ public class BookList {
                 Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(books);
         return books;
     }
 

@@ -1,3 +1,3 @@
 # Library
 Online project Library.
-Created for self-education
+Stack of technologies: JSP, JSF, JSTL, JDBC, HTML, CSS

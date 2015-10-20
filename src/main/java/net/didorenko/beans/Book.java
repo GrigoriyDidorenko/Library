@@ -1,8 +1,17 @@
 package net.didorenko.beans;
 
+import net.didorenko.db.Database;
+
 import java.awt.*;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * package: net.didorenko.beans
@@ -119,6 +128,37 @@ public class Book implements Serializable {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public void fillPdfContent() {
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+
+        try {
+            conn = Database.getConnection();
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select content from book where id="+this.getId());
+            while (rs.next()) {
+                this.setContent(rs.getBytes("content"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+                if (rs != null)
+                    rs.close();
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
 
