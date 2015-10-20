@@ -11,9 +11,9 @@
   <jsp:useBean id="letterList" class="net.didorenko.beans.LetterList" scope="application"/>
   <%
     char[] letters = letterList.getRussianLetters();
-    for (int i = 0; i < letters.length; i++) {
+    for (char letter : letters ) {
   %>
-  <a  href="../../pages/books.jsp?letter=<%=letters[i]%>"><%=letters[i]%></a>
+  <a  href="books.jsp?letter=<%=letter%>"><%=letter%></a>
   <%
     }%>
 </div>

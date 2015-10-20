@@ -14,7 +14,7 @@
     <%
       for (Genre genre : genreList.getGenresList()) {
     %>
-    <li><a href="books.jsp?genre_id=<%=genre.getId()%>&name=<%=genre.getName()%>"><%=genre.getName()%></a></li>
+    <li><a href="books.jsp?genre_id=<%=genre.getId()%>"><%=genre.getName()%></a></li>
     <%}%>
   </ul>
 </div>

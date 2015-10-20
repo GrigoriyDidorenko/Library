@@ -21,7 +21,7 @@
 
 
   <%
-    ArrayList<Book> list = null;
+    ArrayList<Book> list = new ArrayList<Book>();
 
     if (request.getParameter("genre_id") != null) {
       long genreId = Long.valueOf(request.getParameter("genre_id"));
