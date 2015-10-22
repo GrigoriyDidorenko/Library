@@ -10,10 +10,31 @@
 <div class="letters">
   <jsp:useBean id="letterList" class="net.didorenko.beans.LetterList" scope="application"/>
   <%
+
+    String searchLetter = null;
+
+
+    if (request.getParameter("letter") != null) {
+      searchLetter = request.getParameter("letter");
+      session.setAttribute("letter", searchLetter);
+    } else if (session.getAttribute("letter") != null) {
+      searchLetter = session.getAttribute("letter").toString();
+    }
+
+
     char[] letters = letterList.getRussianLetters();
-    for (char letter : letters ) {
+    for (char letter : letters) {
+
+      if (searchLetter != null && searchLetter.toString().toUpperCase().charAt(0) == letter) {
+
+  %>
+
+  <a style="color:red;" href="books.jsp?letter=<%=letter%>"><%=letter%></a>
+  <%
+  } else {
   %>
   <a  href="books.jsp?letter=<%=letter%>"><%=letter%></a>
   <%
+      }
     }%>
 </div>

@@ -12,6 +12,11 @@
     <title>JSP Page</title>
 </head>
 <body>
+
+<div style="margin:30px;">
+  <a href="books.jsp">Назад</a>
+</div>
+
 <div class="pdfViewer">
   <applet code="EmbedPDF.class" archive="<%=getServletConfig().getServletContext().getContextPath()%>/jars/EmbedPDF.jar" width="850" height="900">
 
